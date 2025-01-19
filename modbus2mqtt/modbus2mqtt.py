@@ -500,7 +500,7 @@ async def async_main():
         globaltopic+="/"
     
     if verbosity>=0:
-        print('Starting Modbus2MQTT V%s (GizMoCuz) with topic prefix \"%s\"' %(__version__, globaltopic))
+        print('Starting Modbus2MQTT V%s with topic prefix \"%s\"' %(__version__, globaltopic))
 
     # type, topic, slaveid,  ref, size, functioncode, rate
     # type, topic, reference, rw, interpretation, scaling, unit, unique_id

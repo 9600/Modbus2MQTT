@@ -60,6 +60,31 @@ class DataTypes:
             out = myval
         return out
 
+    def parseint64(refobj, msg):
+        try:
+            out=None
+            #
+            #
+            # STUB - FIX ME
+            #
+            # 
+        except:
+            out=None
+        return out
+    def combineint64(refobj, val):
+        # Ensure we have exactly 4 registers
+        if len(val) != 4:
+            raise ValueError("Exactly four 16-bit registers are required")
+
+        # Combine the registers into a single 64-bit integer
+        out = (val[0] << 48) | (val[1] << 32) | (val[2] << 16) | val[3]
+        
+        # Check if the sign bit is set (the 64th bit)
+        if out & (1 << 63):
+            # If the sign bit is set, adjust the result for a signed integer
+            out -= 1 << 64
+        return out
+
     def parseuint32LE(refobj,msg):
         try:
             value=int(msg)
@@ -226,6 +251,11 @@ class DataTypes:
             refobj.regAmount=1
             refobj.parse=DataTypes.parseint16
             refobj.combine=DataTypes.combineint16
+            refobj.dataType="integer"
+        elif conf == "int64":
+            refobj.regAmount=4
+            refobj.parse=DataTypes.parseint64
+            refobj.combine=DataTypes.combineint64
             refobj.dataType="integer"
         elif conf == "uint32LE":
             refobj.regAmount=2
